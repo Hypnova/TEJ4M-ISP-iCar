@@ -13,6 +13,7 @@
 #define white 0 //LDR threshold value for white
 #define black 100 //LDR threshold value for black
 
+
 void setup() {
     Serial.begin(9600);
     pinMode(E1, OUTPUT);
@@ -30,7 +31,7 @@ void setup() {
 int getLDR(int LDR) {
     return analogRead(LDR);
 }
-void dWrite (int dir[4], int speed1, int speed2){
+void traverse (int dir[4], int speed1, int speed2){
   analogWrite(E1, speed1); // Run in full speed
   analogWrite(E2, speed1);
   digitalWrite(I1, dir[0]);
@@ -39,24 +40,24 @@ void dWrite (int dir[4], int speed1, int speed2){
   digitalWrite(I4, dir[3]);
 }
 void turnRightSharp(int speed1){
-    int dir [4] = {1,0,0,1};
-    dWrite (dir, speed1, speed1);
+    int dir[4] = {1,0,0,1};
+    traverse (dir, speed1, speed1);
 }
 void turnLeftSharp(int speed1){
-    int dir [4] = {0,1,1,0};
-    dWrite (dir, speed1, speed1);
+    int dir[4] = {0,1,1,0};
+    traverse (dir, speed1, speed1);
 }
 void backwards(int speed1){
-    int dir [4] = {1,0,1,0};
-    dWrite (dir, speed1, speed1);
+    int dir[4] = {1,0,1,0};
+    traverse (dir, speed1, speed1);
 }
 void forwards(int speed1){
     int dir [4] = {0,1,0,1};
-    dWrite (dir, speed1, speed1);
+    traverse (dir, speed1, speed1);
 }
 void turn(int speed1, int speed2){
     int dir [4] = {1,0,0,1};
-    dWrite (dir, speed1, speed2);
+    traverse (dir, speed1, speed2);
 
 }
    
@@ -71,7 +72,7 @@ void loop() {
     }
     //General
     if (abs(LDR1 - LDR2) <= 10 &&  abs(LDR1 - LDR3) <= 10 && abs(LDR2 - LDR3) <= 10){
-      turnRightShapr(70);
+      turnRightSharp(70);
     }
     // Forwards adjustments
     //Right
